@@ -1,0 +1,4 @@
+[
+   {"op": "replace", "path": "/metadata/name", "value": "demo-webserver-kustomize"},
+   {"op": "replace", "path": "/spec/template/spec/containers/0/name", "value": "demo-webserver-kustomize"}
+]
