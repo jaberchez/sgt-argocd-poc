@@ -8,12 +8,12 @@ image:
   repository: quay.io/alfresco/anaxes-hello-world-ui
   tag: 0.1-SNAPSHOT
   pullPolicy: Always
-  internalPort: 80
+  internalPort: 8080
 service:
   name: hello-world-app-ui
   # If running on AWS choose LoadBalancer as service Type, for minikube use NodePort
-  type: NodePort
-  externalPort: 80
+  type: ClusterIP
+  externalPort: 8080
 ingress:
   path: /hello-ui
 api:
