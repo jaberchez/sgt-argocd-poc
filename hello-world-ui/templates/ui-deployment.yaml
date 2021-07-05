@@ -19,15 +19,12 @@ spec:
         app: {{ template "hello-world-ui.fullname" . }}
         release: {{ .Release.Name }}
     spec:
-      volumes:
-        - name: cache
-          emptyDir: {}
       imagePullSecrets:
         - name: {{ .Values.registryPullSecrets }}
       containers:
         - name: {{ .Chart.Name }}-ui
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          image: "nginxdemos/hello"
+          #image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "quay.io/jberchez-redhat/demo-webserver:v2.0"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: HELLO_BACKEND_URL
@@ -40,9 +37,6 @@ spec:
               value: {{ .Values.sso.identityService }}
           ports:
             - containerPort: {{ .Values.image.internalPort }}
-          volumeMounts:
-            - mountPath: "/var/cache/nginx"
-              name: cache
           livenessProbe:
             httpGet:
               scheme: HTTP
