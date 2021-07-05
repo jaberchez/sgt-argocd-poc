@@ -8,6 +8,10 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
+  selector:
+    matchLabels:
+      app: {{ template "hello-world-ui.fullname" . }}
+
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:
