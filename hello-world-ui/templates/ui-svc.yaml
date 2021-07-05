@@ -12,7 +12,7 @@ spec:
   ports:
     - port: {{ .Values.service.externalPort }}
       targetPort: {{ .Values.image.internalPort }}
-      name: {{ .Values.service.name }}
+      name: http
   selector:
     app: {{ template "hello-world-ui.fullname" . }}
     release: {{ .Release.Name }}
