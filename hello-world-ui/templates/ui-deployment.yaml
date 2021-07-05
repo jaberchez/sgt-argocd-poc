@@ -19,6 +19,9 @@ spec:
         app: {{ template "hello-world-ui.fullname" . }}
         release: {{ .Release.Name }}
     spec:
+      volumes:
+        - name: cache
+          emptyDir: {}
       imagePullSecrets:
         - name: {{ .Values.registryPullSecrets }}
       containers:
@@ -37,6 +40,9 @@ spec:
               value: {{ .Values.sso.identityService }}
           ports:
             - containerPort: {{ .Values.image.internalPort }}
+          volumeMounts:
+            - mountPath: "/var/cache/nginx"
+              name: cache
           livenessProbe:
             httpGet:
               scheme: HTTP
