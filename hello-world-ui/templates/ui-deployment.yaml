@@ -36,7 +36,8 @@ spec:
             - name: IDENTITY_SERVICE_URL
               value: {{ .Values.sso.identityService }}
           ports:
-            - containerPort: {{ .Values.image.internalPort }}
+            - name: http
+              containerPort: {{ .Values.image.internalPort }}
           livenessProbe:
             httpGet:
               scheme: HTTP
