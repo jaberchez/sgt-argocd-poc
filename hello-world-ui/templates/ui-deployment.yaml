@@ -24,6 +24,7 @@ spec:
       containers:
         - name: {{ .Chart.Name }}-ui
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "nginxdemos/hello"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: HELLO_BACKEND_URL
