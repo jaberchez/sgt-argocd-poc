@@ -11,8 +11,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "22"
 
 spec:
-  host: demo-webserver-demo-webserver-raw.apps.cluster01.sandbox677.opentlc.com
-
   port:
     targetPort: http
 
