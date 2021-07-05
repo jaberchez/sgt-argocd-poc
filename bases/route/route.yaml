@@ -8,7 +8,6 @@ metadata:
     haproxy.router.openshift.io/disable_cookies: "true"
     
 spec:
-  host: host
   port:
     targetPort: 8080
   tls:
