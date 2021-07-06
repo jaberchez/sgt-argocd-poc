@@ -9,8 +9,6 @@ resources:
 commonLabels:
   app: demo-webserver-kustomize
 
-namespace: demo-webserver
-
 patches:
   - target:
       kind: Deployment
