@@ -1,0 +1,21 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ template "hello-world-ui.fullname" . }}
+
+  annotations:
+    argocd.argoproj.io/sync-wave: "22"
+
+spec:
+  port:
+    targetPort: http
+
+  tls:
+    termination: edge
+
+  to:
+    kind: Service
+    name: {{ template "hello-world-ui.fullname" . }}
+    weight: 100
+
+  wildcardPolicy: None
