@@ -2,11 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: demo-webserver-raw
+  name: demo-raw
 
   labels:
     app.kubernetes.io/component: frontend
-    app.kubernetes.io/name: demo-webserver-raw
+    app.kubernetes.io/name: demo-raw
 
   annotations:
     argocd.argoproj.io/sync-wave: "20"
@@ -14,12 +14,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: demo-webserver-raw
+      app.kubernetes.io/name: demo-raw
 
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: demo-webserver-raw
+        app.kubernetes.io/name: demo-raw
 
     spec:
       containers:
