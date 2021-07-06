@@ -1,0 +1,38 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./bases/deployment/
+  - ./bases/service/
+  - ./bases/route/
+
+commonLabels:
+  app: demo-webserver-kustomize
+
+namespace: demo-webserver
+
+patches:
+  - target:
+      kind: Deployment
+      name: base-name
+    path: patch-deployment.json
+
+  - target:
+      kind: Service
+      name: base-name
+    path: patch-service.json
+
+  - target:
+      kind: Route
+      name: base-name
+    path: patch-route.json
+
+    #- target:
+    #    kind: Route
+    #    name: base-name
+    #  path: patch-secret.json
+
+images:
+  - name: base-image
+    newName: quay.io/jberchez-redhat/demo-webserver
+    newTag: v1.0

@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: base-name
+  namespace: base-namespace
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: base-app
+
+  template:
+    metadata:
+      labels:
+        app: base-app
+    spec:
+      containers:
+        - name: base-image
+          image: base-image:base-version
+
+          ports:
+            - name: http
+              containerPort: 8080
+
+          envFrom:
+            - secretRef:
+                name: base-secret-env
+                optional: true
+
+            - configMapRef:
+                name: base-configmap-env
+                optional: true
+
+          readinessProbe:
+            httpGet:
+              path: '/health'
+              port: http
+
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+            periodSeconds: 10
+
+          livenessProbe:
+            httpGet:
+              path: '/health'
+              port: http
+
+            initialDelaySeconds: 20
+            timeoutSeconds: 1
+            periodSeconds: 10
+
+          imagePullPolicy: 'Always'
+
+          securityContext:
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+            privileged: false
+            allowPrivilegeEscalation: false
