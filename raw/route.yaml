@@ -1,11 +1,11 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: demo-raw
+  name: demo3-raw
 
   labels:
     app.kubernetes.io/component: frontend
-    app.kubernetes.io/name: demo-raw
+    app.kubernetes.io/name: demo3-raw
 
   annotations:
     argocd.argoproj.io/sync-wave: "22"
@@ -19,7 +19,7 @@ spec:
 
   to:
     kind: Service
-    name: demo-raw
+    name: demo3-raw
     weight: 100
 
   wildcardPolicy: None
