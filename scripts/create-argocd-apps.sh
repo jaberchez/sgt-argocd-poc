@@ -1,5 +1,11 @@
 #! /bin/bash
 
+usage() {
+   echo "Usage: $(basename $0) total-namespaces total-microservices-per-namespace"
+   echo "Example: $(basename $0) 10 10"
+   exit 1
+}
+
 createApp() {
    local namespace="$1"
    local idx="$2"
@@ -26,11 +32,16 @@ spec:
 EOF
 }
 
-for i in {1..20}
+[ $# -ne 2 ] && usage
+
+totalNamespaces=$1
+totalMicroservicesPerNamespace=$2
+
+for i in $(seq 1 ${totalNamespaces})
 do
    namespace="demo${i}"
 
-   for d in {1..20}
+   for d in $(seq 1 ${totalMicroservicesPerNamespace})
    do
       #createApp $namespace ${d}
       createApp $namespace ${d} | oc apply -f -
