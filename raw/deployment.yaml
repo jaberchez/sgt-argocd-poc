@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: demo-webserver
-        image: quay.io/jberchez-redhat/demo-webserver:v2.0-todel
+        image: quay.io/jberchez-redhat/demo-webserver:v3.0-todel
         ports:
           - name: http
             containerPort: 8080
