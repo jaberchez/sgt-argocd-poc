@@ -14,7 +14,7 @@ createApp() {
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ${namespace}-raw-${d}
+  name: ${namespace}-raw-${idx}
   namespace: argocd
 spec:
   destination:
