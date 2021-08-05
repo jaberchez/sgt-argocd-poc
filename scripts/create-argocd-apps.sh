@@ -26,6 +26,8 @@ spec:
     repoURL: https://github.com/jaberchez/sgt-argocd-poc.git
     targetRevision: demo${idx}-todel
   syncPolicy:
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
     automated:
       prune: true
       selfHeal: true
