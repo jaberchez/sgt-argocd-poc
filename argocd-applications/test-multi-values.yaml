@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-multi-values
+  namespace: sanes-redhat-pre
+spec:
+  destination:
+    namespace: sanes-redhat-pre
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      valueFiles:
+      - values-hello-world-sb01.yaml
+      - values-hello-world-sb02.yaml
+      - values-hello-world-sb03.yaml
+    path: .
+    repoURL: https://github.com/shellclear/helm-chart-umbrella-springboot.git
+    targetRevision: multi-values
